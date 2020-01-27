@@ -1,5 +1,6 @@
 import javafx.beans.value.WeakChangeListener;
 
+
 /**
  * Classe qui contient le programme principal 
  *
@@ -12,7 +13,13 @@ import javafx.beans.value.WeakChangeListener;
     static boolean fin=false; 
     static boolean[][] manche = new boolean[6][25];
     static int mode = constApplications.MODE_MENU_PRINCIPAL;
-
+    
+    /*
+    * Fonction qui initialise la manche a Faux 
+    *
+    * @param manche[][] tableau 2d vide
+    * @return void
+    */
     public static void initialiseMancheFaux(boolean manche[][]){
         for(int i=0;i<6;i++){
             for (int j =0; j<25; j++){
