@@ -1,139 +1,136 @@
-public class notes{
-    static int note = 0;
+public class gammes{
+    static int note=0;
 
-    public static int saisiNotes(){
-        int choix; 
+    public static int choisirGamme(){
+        int choixGamme = 0;
 
-        System.out.println("Notes");
-        System.out.println("---------------------------------------------");
-        System.out.println("1  : Do \n"+
-        "2  : Do# \n" +
-        "3  : Ré \n" +
-        "4  : Ré# \n" +
-        "5  : Mi \n" +
-        "6  : Fa \n" +
-        "7  : Fa# \n" +
-        "8  : Sol \n" +
-        "9  : Sol# \n" +
-        "10 : La \n" +
-        "11 : La# \n" +
-        "12 : Si \n");
-
-        choix = UtilitaireValidation.lireInt(constApplications.STRING_CHOIX_NOTES, 1, 12);
-        return choix; 
+        System.out.println("Sortes de gammes\n "+
+        "---------------------------------------------\n"+
+        "1  : Mineure\n "+
+        "2  : Majeure\n "+
+        "---------------------------------------------");
+       
+        return choixGamme = UtilitaireValidation.lireInt("Entrez le numéro de la sorte de gamme désirée", 1, 2);
     }
 
-    public static void remplirManche(boolean [][] manche, int note){
-        int[] positionNote = constApplications.POSITION[note - 1];
+    public static void remplirManche(boolean[][] manche, int note){
+        int [] positionNote = constApplications.POSITION[note-1];
+        int choixGamme = choisirGamme();
 
-        for(int i = 0; i < 6; i++ ){
-            for(int j = 0; j < 25; j++){
-                if(j == positionNote[i] || j == positionNote[i]+12){
-                    manche[i][j] = true;
-                }
-                //System.out.print(manche[i][j]+ " ");
-            }
-            //System.out.println("\n");
-        }
-        
-    }
-
-    public static void afficheManche(boolean [][] manche){
-        
-        for (int i = 0; i < 6; i++){
-            System.out.print(i+1 + " |"); 
-            for (int j = 0; j < 25 ; j++){
-                if(manche[i][j] == true){
-                    System.out.print(" " + j + " |");
-                }else{
-                    System.out.print("___|");
+        if (choixGamme == constApplications.MAJEURE){
+            for (int i = 0; i < 6; i++){
+                for(int j = 0; j < 25; j++){
+                    if(j == positionNote[i]){
+                        manche[i][j] = true; 
+                        manche[i][j+2] = true;
+                        manche[i][j+4] = true;
+                        manche[i][j+5] = true;
+                        manche[i][j+7] = true;
+                        manche[i][j+9] = true;
+                        manche[i][j+11] = true;
+                        manche[i][j+12] = true;
+                    }
                 }
             }
-            System.out.println("\n");
         }
-        UtilitaireValidation.pause();
+        if (choixGamme == constApplications.MINEURE){
+            for (int i = 0; i < 6; i++){
+                for(int j = 0; j < 25; j++){
+                    if(j == positionNote[i]){
+                        manche[i][j] = true; 
+                        manche[i][j+2] = true;
+                        manche[i][j+3] = true;
+                        manche[i][j+5] = true;
+                        manche[i][j+7] = true;
+                        manche[i][j+8] = true;
+                        manche[i][j+10] = true;
+                        manche[i][j+12] = true;
+                    }
+                }
+            }
+        }
+
     }
 
-    public static void menuNotes(boolean[][] manche){
-        note = saisiNotes();
-        
+    public static void menuManches(boolean[][] manche){
+        note = notes.saisiNotes();
+
         switch (note) {
             case constApplications.DO:
                 remplirManche(manche, constApplications.DO);
-                afficheManche(manche);
+                notes.afficheManche(manche);
                 programmePrincipal.initialiseMancheFaux(manche);
                 break;
-
-            
+                
             case constApplications.DO_DIESE:
                 remplirManche(manche, constApplications.DO_DIESE);
-                afficheManche(manche);
+                notes.afficheManche(manche);
                 programmePrincipal.initialiseMancheFaux(manche);
                 break;
             case constApplications.RE:
                 remplirManche(manche, constApplications.RE);
-                afficheManche(manche);
+                notes.afficheManche(manche);
                 programmePrincipal.initialiseMancheFaux(manche);
                 break;
 
             case constApplications.RE_DIESE:
                 remplirManche(manche, constApplications.RE_DIESE);
-                afficheManche(manche);
+                notes.afficheManche(manche);
                 programmePrincipal.initialiseMancheFaux(manche);
                 break;    
 
             case constApplications.MI:
                 remplirManche(manche, constApplications.MI);
-                afficheManche(manche);
+                notes.afficheManche(manche);
                 programmePrincipal.initialiseMancheFaux(manche);
                 break;    
 
             case constApplications.MI_DIESE:
                 remplirManche(manche, constApplications.MI_DIESE);
-                afficheManche(manche);
+                notes.afficheManche(manche);
                 programmePrincipal.initialiseMancheFaux(manche);
                 break;
 
             case constApplications.FA:
                 remplirManche(manche, constApplications.FA);
-                afficheManche(manche);
+                notes.afficheManche(manche);
                 programmePrincipal.initialiseMancheFaux(manche);
                 break;
 
             case constApplications.FA_DIESE:
                 remplirManche(manche, constApplications.FA_DIESE);
-                afficheManche(manche);
+                notes.afficheManche(manche);
                 programmePrincipal.initialiseMancheFaux(manche);
                 break;
 
             case constApplications.SOL:
                 remplirManche(manche, constApplications.SOL);
-                afficheManche(manche);
+                notes.afficheManche(manche);
                 programmePrincipal.initialiseMancheFaux(manche);
                 break; 
 
             case constApplications.SOL_DIESE:
                 remplirManche(manche, constApplications.SOL_DIESE);
-                afficheManche(manche);
+                notes.afficheManche(manche);
                 programmePrincipal.initialiseMancheFaux(manche);
                 break;
 
             case constApplications.SI:
                 remplirManche(manche, constApplications.SI);
-                afficheManche(manche);
+                notes.afficheManche(manche);
                 programmePrincipal.initialiseMancheFaux(manche);
                 break;
 
             case constApplications.SI_DIESE:
                 remplirManche(manche, constApplications.SI_DIESE);
-                afficheManche(manche);
+                notes.afficheManche(manche);
                 programmePrincipal.initialiseMancheFaux(manche);
                 break;
 
             default:
                 break;
+        
+
         }
     }
-
-
 }

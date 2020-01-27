@@ -13,6 +13,7 @@
   public final static int MODE_QUITTER = 3; 
   public final static String STRING_CHOIX = "Entrez votre choix ";
   public final static String STRING_CHOIX_NOTES = "Entrez le numéro de la note désirée";
+
   // Constantes pour le menu Notes
   public final static int[][] POSITION = {
     {8, 1, 5, 10, 3, 8},
@@ -28,6 +29,11 @@
     {6, 11, 3, 8, 1, 6},
     {7, 0, 4, 9, 2, 7}
   };
+
+  //Constantes pour le choix de gamme
+  public final static int MINEURE = 1;
+  public final static int MAJEURE = 2;
+  
 
   //Constantes des notes
   public final static int DO = 1;

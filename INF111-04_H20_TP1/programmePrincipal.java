@@ -46,9 +46,11 @@ import javafx.beans.value.WeakChangeListener;
 
                 case constApplications.MODE_MENU_CHOIX_NOTE:
                     notes.menuNotes(manche);
-                    
                     break;
 
+                case constApplications.MODE_MENU_CHOIX_GAMME:
+                    gammes.menuManches(manche);
+                    break;
 
                 case constApplications.MODE_QUITTER:
                     System.out.println("Programme fini normalement");
