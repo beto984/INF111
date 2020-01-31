@@ -45,11 +45,11 @@ import javafx.beans.value.WeakChangeListener;
                     break;
 
                 case constApplications.MODE_MENU_CHOIX_NOTE:
-                    notes.menuNotes(manche);
+                    mode = notes.menuNotes(manche);
                     break;
 
                 case constApplications.MODE_MENU_CHOIX_GAMME:
-                    gammes.menuManches(manche);
+                    gammes.menuGammes(manche);
                     break;
 
                 case constApplications.MODE_QUITTER:

@@ -18,7 +18,7 @@ public class gammes{
         int choixGamme = choisirGamme();
 
         if (choixGamme == constApplications.MINEURE){
-            for(int i = 0; i < 6; i++){
+            for(int i = 0; i < 7; i++){
                 notes.remplirManche(manche, note);
                 note = (note+gamme[0][i])%12;
             }
@@ -32,7 +32,7 @@ public class gammes{
 
     }
 
-    public static int menuGammes(boolean[][] manche, int[][] gamme){
+    public static int menuGammes(boolean[][] manche){
         note = notes.saisiNotes();
 
         int mode = 1; 
@@ -41,88 +41,11 @@ public class gammes{
             mode = 0; 
         }else{
             programmePrincipal.initialiseMancheFaux(manche);
-            remplirManche(manche, note, gamme);
-            afficheManche(manche);
+            remplirManche(manche, note, constApplications.GAMME);
+            notes.afficheManche(manche);
         }
        
         return mode; 
-        /*return mode;
-        switch (note) {
-            case constApplications.DO:
-                remplirManche(manche, constApplications.DO, constApplications.GAMMES);
-                notes.afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;
-                
-            case constApplications.DO_DIESE:
-                remplirManche(manche, constApplications.DO, constApplications.GAMMES);
-                notes.afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;
-            case constApplications.RE:
-                remplirManche(manche, constApplications.DO, constApplications.GAMMES);
-                notes.afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;
-
-            case constApplications.RE_DIESE:
-                remplirManche(manche, constApplications.DO, constApplications.GAMMES);
-                notes.afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;    
-
-            case constApplications.MI:
-                remplirManche(manche, constApplications.DO, constApplications.GAMMES);
-                notes.afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;    
-
-            case constApplications.MI_DIESE:
-                remplirManche(manche, constApplications.DO, constApplications.GAMMES);  
-                notes.afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;
-
-            case constApplications.FA:
-                remplirManche(manche, constApplications.DO, constApplications.GAMMES);
-                notes.afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;
-
-            case constApplications.FA_DIESE:
-                remplirManche(manche, constApplications.DO, constApplications.GAMMES);
-                notes.afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;
-
-            case constApplications.SOL:
-                remplirManche(manche, constApplications.DO, constApplications.GAMMES);
-                notes.afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break; 
-
-            case constApplications.SOL_DIESE:
-                remplirManche(manche, constApplications.DO, constApplications.GAMMES);
-                notes.afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;
-
-            case constApplications.SI:
-                remplirManche(manche, constApplications.DO, constApplications.GAMMES);
-                notes.afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;
-
-            case constApplications.SI_DIESE:
-                remplirManche(manche, constApplications.DO, constApplications.GAMMES);
-                notes.afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;
-
-            default:
-                break;
-        */
 
         }
-    }
 }

@@ -39,101 +39,47 @@ public class notes{
     }
 
     public static void afficheManche(boolean [][] manche){
-        
+        String str;
         for (int i = 0; i < 6; i++){
-            System.out.print(i+1 + " |"); 
-            for (int j = 0; j < 25 ; j++){
-                if(manche[i][j] == true){
-                    System.out.print(" " + j + " |");
+          if(manche[i][0] == true){
+               str= "0" + (i+1) + "|";
+          }
+          else {
+               str= " " + (i+1) + "|";
+          }
+            System.out.print(str);
+            for (int j = 1; j < 25 ; j++){
+                if(manche[i][j] == true ){
+                    if (j<10)
+                        System.out.print(" " + j + "|");
+                    else
+                        System.out.print(j + "|");
+
                 }else{
-                    System.out.print("___|");
+                    System.out.print("__|");
                 }
             }
-            System.out.println("\n");
+            System.out.print("\n");
         }
         UtilitaireValidation.pause();
     }
 
-    public static void menuNotes(boolean[][] manche){
+    
+    public static int menuNotes(boolean[][] manche){
+        int mode = 1; 
         note = saisiNotes();
-        
-        switch (note) {
-            case constApplications.DO:
-                remplirManche(manche, constApplications.DO);
-                afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;
-
-            
-            case constApplications.DO_DIESE:
-                remplirManche(manche, constApplications.DO_DIESE);
-                afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;
-            case constApplications.RE:
-                remplirManche(manche, constApplications.RE);
-                afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;
-
-            case constApplications.RE_DIESE:
-                remplirManche(manche, constApplications.RE_DIESE);
-                afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;    
-
-            case constApplications.MI:
-                remplirManche(manche, constApplications.MI);
-                afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;    
-
-            case constApplications.MI_DIESE:
-                remplirManche(manche, constApplications.MI_DIESE);
-                afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;
-
-            case constApplications.FA:
-                remplirManche(manche, constApplications.FA);
-                afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;
-
-            case constApplications.FA_DIESE:
-                remplirManche(manche, constApplications.FA_DIESE);
-                afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;
-
-            case constApplications.SOL:
-                remplirManche(manche, constApplications.SOL);
-                afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break; 
-
-            case constApplications.SOL_DIESE:
-                remplirManche(manche, constApplications.SOL_DIESE);
-                afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;
-
-            case constApplications.SI:
-                remplirManche(manche, constApplications.SI);
-                afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;
-
-            case constApplications.SI_DIESE:
-                remplirManche(manche, constApplications.SI_DIESE);
-                afficheManche(manche);
-                programmePrincipal.initialiseMancheFaux(manche);
-                break;
-
-            default:
-                break;
+        if (note == 0){
+            mode = 0; 
+        }else{
+            programmePrincipal.initialiseMancheFaux(manche);
+            remplirManche(manche, note);
+            afficheManche(manche);
         }
+       
+        
+        return mode; 
     }
+    
 
 
 }
