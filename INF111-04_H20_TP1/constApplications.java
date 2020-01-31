@@ -4,13 +4,14 @@
  * @author Kenza Zniber et Humberto Villarino
  * Date: 24 janvier 2020
  */
+import java.lang.String;
 
  public class constApplications{
   // Constantes pour les menu
   public final static int MODE_MENU_PRINCIPAL = 0;
   public final static int MODE_MENU_CHOIX_NOTE = 1;
   public final static int MODE_MENU_CHOIX_GAMME = 2;
-  public final static int MODE_QUITTER = 3; 
+  public final static int MODE_QUITTER = 3;
   public final static String STRING_CHOIX = "Entrez votre choix ";
   public final static String STRING_CHOIX_NOTES = "Entrez le numéro de la note désirée";
 
@@ -33,6 +34,8 @@
   //Constantes pour le choix de gamme
   public final static int MINEURE = 1;
   public final static int MAJEURE = 2;
+  public final static int TON = 2;
+  public final static int DEMI_TON = 1;
   
 
   //Constantes des notes
@@ -49,5 +52,18 @@
   public final static int SI = 11;
   public final static int SI_DIESE = 12;
 
+  //tableau des notes de musique
+  public final static String[] NOTE = {"Do", "Do#", "Ré", "Ré#", "Mi", "Fa",
+                                        "Fa#", "Sol", "Sol#", "La", "La#", "Si"};
+                                      
+                                        
+
+  //tableau des gammes majeure et mineure
+  public final static int GAMME [][]= { {TON, TON, DEMI_TON, TON, TON, DEMI_TON},
+                                        {TON, DEMI_TON, TON, TON, DEMI_TON, TON} };
+
  }
- 
+
+
+
+

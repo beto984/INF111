@@ -28,7 +28,7 @@ public class notes{
 
         for(int i = 0; i < 6; i++ ){
             for(int j = 0; j < 25; j++){
-                if(j == positionNote[i] || j == positionNote[i]+12){
+                if(j == positionNote[i] || j == positionNote[i]+12 ||  j == positionNote[i]+24){
                     manche[i][j] = true;
                 }
                 //System.out.print(manche[i][j]+ " ");
