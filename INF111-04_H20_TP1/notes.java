@@ -1,5 +1,5 @@
 public class notes{
-    static int note = 0;
+    
 
     public static int saisiNotes(){
         int choix; 
@@ -66,6 +66,7 @@ public class notes{
 
     
     public static int menuNotes(boolean[][] manche){
+        int note = 0;
         int mode = 1; 
         note = saisiNotes();
         if (note == 0){

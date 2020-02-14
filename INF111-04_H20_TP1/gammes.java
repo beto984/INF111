@@ -18,13 +18,13 @@ public class gammes{
         int choixGamme = choisirGamme();
 
         if (choixGamme == constApplications.MINEURE){
-            for(int i = 0; i < 7; i++){
+            for(int i = 0; i < 6; i++){
                 notes.remplirManche(manche, note);
                 note = (note+gamme[0][i])%12;
             }
         }
         if (choixGamme == constApplications.MAJEURE){
-            for(int i = 0; i < 7; i++){
+            for(int i = 0; i < 6; i++){
                 notes.remplirManche(manche, note);
                 note = (note+gamme[1][i])%12;
             }
