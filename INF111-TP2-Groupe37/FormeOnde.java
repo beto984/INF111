@@ -33,4 +33,8 @@ public class FormeOnde {
         return freqEchantillonage;
     }
 
+    public double echantillon(int i) {
+        return -1;
+    }
+
 }
