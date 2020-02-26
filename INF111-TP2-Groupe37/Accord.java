@@ -12,13 +12,13 @@ public class Accord {
     private String nom;
     private ArrayList<Note> listeNotes; 
 
-    public Accord(String nom, ArrayList<Note> listeNotes){
+    public Accord(String nom, Note[] listeNotes){
         this.nom = nom;
         this.listeNotes = new ArrayList<Note>();
 
         if(listeNotes != null){
-            for(int i = 0; i< listeNotes.size();i++){
-                this.listeNotes.add(i, listeNotes.get(i));
+            for(int i = 0; i< listeNotes.length;i++){
+                this.listeNotes.add(i, listeNotes[i]);
             }
         }
     }   
