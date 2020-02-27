@@ -27,6 +27,10 @@ public class Accord {
         return nom; 
     }
 
+    public ArrayList<Note> getListeNotes(){
+        return this.listeNotes;
+    }
+
     @Override
     public boolean equals(Object unAccord){
         boolean egal; 
