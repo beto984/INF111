@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Fichier {
 
     public static PieceMusicale obtenirChanson(String cheminFichier) {
-        PieceMusicale piece = null;
+        PieceMusicale pieceAJouer = null;
         File fichier = new File(cheminFichier);
 
         try {
@@ -13,20 +13,20 @@ public class Fichier {
             GenerateurAccord generateur = new GenerateurAccord();
             String titre = reader.nextLine();
             int bpm = reader.nextInt();
-            piece = new PieceMusicale(titre, bpm);
+            pieceAJouer = new PieceMusicale(titre, bpm);
 
             String accord = "";
             double duree;
 
             while (reader.hasNext()) {
                 accord = reader.next();
-                duree = reader.nextDouble() * (6000 / bpm);
-                piece.ajouterAccord(generateur.obtenirAccord(accord, duree));
+                duree = reader.nextDouble() * (60000 / bpm);
+                pieceAJouer.ajouterAccord(generateur.obtenirAccord(accord, duree));
             }
             reader.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return piece;
+        return pieceAJouer;
     }
 }
