@@ -35,6 +35,8 @@ public class ListeIndiceeChainee {
    //----------------------------------
    
    //A FAIRE : definir les attributs d'instance ici...
+   private int nbrElements;
+   private Maillon debut; 
 
    //----------------------------------
    // CONSTRUCTEUR
@@ -55,7 +57,7 @@ public class ListeIndiceeChainee {
    public boolean estVide() {
       
       //A FAIRE
-      return true; //pour compilation seulement... a modifier.
+      return nbrElements == 0; //pour compilation seulement... a modifier.
    }
 
    /**
@@ -66,7 +68,7 @@ public class ListeIndiceeChainee {
    public int taille() {
       
       //A FAIRE
-      return 0; //pour compilation seulement... a modifier.
+      return nbrElements; //pour compilation seulement... a modifier.
    }
 
    /**
@@ -81,9 +83,15 @@ public class ListeIndiceeChainee {
     * @throws NoSuchElementException si pos < 0 ou pos >= taille().
     */
    public Object getElement(int pos) {
+      Object retour; 
 
       //A FAIRE
-      return null; //pour compilation seulement... a modifier.
+       //pour compilation seulement... a modifier.
+      if(pos < 0 || pos >= taille()){
+         throw new NoSuchElementException();
+      }
+      retour = positionner(pos).element;
+      return retour ; 
 
    }
 
@@ -98,7 +106,7 @@ public class ListeIndiceeChainee {
    public Object getElementDebut() {
       
       //A FAIRE... penser a reutiliser votre code...
-      return null; //pour compilation seulement... a modifier.
+      return getElement(0); //pour compilation seulement... a modifier.
    }
 
    /**
@@ -112,7 +120,7 @@ public class ListeIndiceeChainee {
    public Object getElementFin() {
       
       //A FAIRE... penser a reutiliser votre code...
-      return null; //pour compilation seulement... a modifier.
+      return getElement(taille() - 1); //pour compilation seulement... a modifier.
    }
 
    /**
@@ -133,7 +141,19 @@ public class ListeIndiceeChainee {
     */
    public void inserer(Object element, int pos) {
 
-      //A FAIRE
+      Maillon m; 
+
+      if(pos < 0 || pos > taille()){
+         throw new NoSuchElementException();
+      }
+      if(pos == 0){
+         debut = new Maillon(element, debut);
+      }else{
+         m = positionner(pos - 1);
+         m.suivant = new Maillon(element, m.suivant);
+      }
+      nbrElements++;
+
    }
 
    /**
@@ -147,6 +167,7 @@ public class ListeIndiceeChainee {
    public void insererDebut(Object element) {
       
       //A FAIRE... penser a reutiliser votre code...
+      inserer(element, 0);
    }
 
    /**
@@ -160,6 +181,7 @@ public class ListeIndiceeChainee {
    public void insererFin(Object element) {
       
       //A FAIRE... penser a reutiliser votre code...
+      inserer(element, taille());
    }
 
    /**
@@ -175,9 +197,26 @@ public class ListeIndiceeChainee {
     * @throws NoSuchElementException si pos < 0 ou pos >= taille()
     */
    public Object supprimer(int pos) {
-
+      Object retour;
+      Maillon m; 
       //A FAIRE
-      return null; //pour compilation seulement... a modifier.
+
+      if(pos < 0 || pos >= taille() ){
+         throw new NoSuchElementException();
+      }
+
+      if(pos == 0){
+         retour = debut.element;    
+         debut = debut.suivant;
+      }else{
+         m = positionner(pos - 1 );
+         retour = m.suivant.element;
+         m.suivant = m.suivant.suivant; 
+      }
+
+      nbrElements--; 
+
+      return retour; //pour compilation seulement... a modifier.
    }
 
    /**
@@ -191,7 +230,7 @@ public class ListeIndiceeChainee {
    public Object supprimerDebut() {
       
       //A FAIRE... penser a reutiliser votre code...
-      return null; //pour compilation seulement... a modifier.
+      return supprimer(0); //pour compilation seulement... a modifier.
    }
 
    /**
@@ -205,7 +244,7 @@ public class ListeIndiceeChainee {
    public Object supprimerFin() {
       
       //A FAIRE... penser a reutiliser votre code...
-      return null; //pour compilation seulement... a modifier.
+      return supprimer(taille() - 1); //pour compilation seulement... a modifier.
    }
 
    /**
@@ -216,6 +255,8 @@ public class ListeIndiceeChainee {
    public void vider() {
 
       //A FAIRE
+      debut = null;
+      nbrElements = 0; 
    }
 
    //----------------------------------
@@ -223,6 +264,15 @@ public class ListeIndiceeChainee {
    //----------------------------------
    
    //A faire s'il y a lieu
+   private Maillon positionner(int pos){
+      Maillon m = debut;
+
+      for(int i = 0; i < pos; i++){
+         m = m.suivant;
+      }
+
+      return m;
+   }
 
    //-------------------------------------------
    // CLASSE INTERNE MAILLON 
