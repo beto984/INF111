@@ -1,4 +1,3 @@
-import java.nio.DoubleBuffer;
 
 /**
  * CLASSE A COMPLETER...
@@ -47,32 +46,34 @@ public class ListePosCouranteTableau {
    // CONSTANTE DE CLASSE
    //----------------------------------
    //capacite par defaut de cette liste
-   public static final int CAPACITE_PAR_DEFAUT = 100; 
+   public static final int CAPACITE_PAR_DEFAUT = 100;
+
    //----------------------------------
    // ATTRIBUTS D'INSTANCE
    //----------------------------------
+
 
    /*
       Definissez ici les 3 attributs d'instance suivants :
          - elements : tableau d'Object contenant les elements de la liste
          - posCourante : entier pour retenir la position courante de cette liste
          - nbrElements : entier pour retenir le nombre d'elements dans cette liste
-
+   
       Respectez le principe d'encapsulation !
    */
-   private Object[] elements;
    private int posCourante;
    private int nbrElements;
+   private Object[] elements; 
 
    //----------------------------------
    // CONSTRUCTEURS
    //----------------------------------
-
+   
    /*
       Completez les 2 constructeurs suivants. Lisez bien la Javadoc
       pour comprendre ce qu'ils doivente faire.
    */
-
+   
    /**
     * Construit une liste vide, de la capacite donnee en parametre.
     *
@@ -80,65 +81,73 @@ public class ListePosCouranteTableau {
     *        NOTE : on suppose que capacite est >= 0.
     */
    public ListePosCouranteTableau(int capacite) {
-      elements = new Object[capacite];
+      
+      //A FAIRE
       posCourante = 0;
-      nbrElements = 0; 
-   }  
+      nbrElements = 0;
+      elements = new Object[capacite]; 
+   }
+
    /**
     * Construit une liste vide, d'une capacite = CAPACITE_PAR_DEFAUT.
     */
-   public ListePosCouranteTableau() {  
+   public ListePosCouranteTableau() {
+      
+      //A FAIRE
       this(CAPACITE_PAR_DEFAUT);
-   }  
+   }
+
    //----------------------------------
    // METHODES D'INSTANCE PUBLIQUES
    //----------------------------------
-
+   
    /*
       Completez les methodes d'instance publiques suivantes.
       Lisez bien la Javadoc pour comprendre ce qu'elles doivent faire.
-
+   
       Si vous le jugez pertinent, faites des methodes privees pour bien
       modulariser votre code (bonne separation fonctionnelle). Ajoutez
       cet methodes dans la derniere section reservee a cet effet.
    */
-
+   
    //-- SERVICES DE CONSULTATION --
-
+      
    /**
     * Permet d'obtenir la taille de cette liste (son nombre d'elements).
     *
     * @return la taille de cette liste
     */
    public int taille() {
-
-
+      
+      //A FAIRE
+      
       return nbrElements; //pour compilation seulement... à modifier
-   }  
+   }
+
    /**
     * Teste si cette liste est vide.
     *
     * @return true si cette liste est vide, false sinon.
     */
    public boolean estVide() {
-
+      
       //A FAIRE
-
-      return taille() == 0; //pour compilation seulement... à modifier
+      
+      return nbrElements == 0; //pour compilation seulement... à modifier
    }
-
+   
    /**
     * Teste si cette liste est pleine. 
     *
     * @return true si cette liste est pleine, false sinon.
     */
    public boolean estPleine() {
-
+      
       //A FAIRE
-
+      
       return nbrElements == elements.length;  //pour compilation seulement... à modifier
    }
-
+   
    /**
     * Permet de consulter l'element courant (celui qui est se trouve a la 
     * position courante).
@@ -150,17 +159,19 @@ public class ListePosCouranteTableau {
     * @throws ListeVideException si cette liste est vide avant l'appel
     */
    public Object getElement() throws ListeVideException {
-
+      
+      //A FAIRE
       if(estVide()){
          throw new ListeVideException();
       }
-
+      
       return elements[posCourante]; //pour compilation seulement... à modifier
    }
-
+   
    //-- FIN SERVICES DE CONSULTATION --
+   
+   //SERVICES DE DEPLACEMENT DE LA POSITION COURANTE
 
-   //SERVICES DE DEPLACEMENT DE LA POSITION COURANTE  
    /**
     * Met la position courante sur l'element au debut de cette liste.
     *
@@ -169,14 +180,15 @@ public class ListePosCouranteTableau {
     * @throws ListeVideException si cette liste est vide avant l'appel
     */
    public void setPosDebut() throws ListeVideException {
+      
+      //A FAIRE
       if(estVide()){
          throw new ListeVideException();
       }
-      posCourante = 0;
+
+      posCourante = 0; 
    }
-
-
-
+   
    /**
     * Met la position courante sur l'element a la fin de cette liste.
     * 
@@ -185,14 +197,14 @@ public class ListePosCouranteTableau {
     * @throws ListeVideException si cette liste est vide avant l'appel
     */
    public void setPosFin() throws ListeVideException {
-
+      
+      //A FAIRE
       if(estVide()){
          throw new ListeVideException();
       }
-
       posCourante = nbrElements - 1;
    }
-
+   
    /**
     * Met la position courante sur l'element qui precede l'element courant.
     * Si la position courante est au debut avant l'appel, elle demeure 
@@ -205,21 +217,22 @@ public class ListePosCouranteTableau {
     * @throws ListeVideException si cette liste est vide avant l'appel
     */
    public boolean setPosPrecedent() throws ListeVideException {
-      boolean retour;
-
+      boolean retour; 
+      //A FAIRE
       if(estVide()){
          throw new ListeVideException();
       }
       
-      retour = posCourante > 0;
-
-      if(retour){
+      if(posCourante == 0){
+         retour = false; 
+      }else{
          posCourante--;
+         retour = true; 
       }
 
       return retour ; //pour compilation seulement... à modifier
    }
-
+   
    /**
     * Met la position courante sur l'element qui suit l'element courant.
     * Si la position courante est a la fin de cette liste avant l'appel, 
@@ -232,25 +245,28 @@ public class ListePosCouranteTableau {
     * @throws ListeVideException si cette liste est vide avant l'appel
     */
    public boolean setPosSuivant() throws ListeVideException {
-      boolean aUnSuivant;
+      boolean retour;
 
-      if(estVide()){
+      //A FAIRE
+
+      if (estVide()){
          throw new ListeVideException();
       }
 
-      aUnSuivant = posCourante != nbrElements - 1;
+      retour = (posCourante != nbrElements - 1); 
 
-      if(aUnSuivant){
+      if (retour){
          posCourante++;
       }
-      return aUnSuivant; //pour compilation seulement... à modifier
+
+      return retour; //pour compilation seulement... à modifier
    }
-
+   
    //-- FIN SERVICES DE DEPLACEMENT DE LA POSITION COURANTE --
-
-
+   
+   
    //-- SERVICES D'INSERTION ET DE SUPPRESSION --
-
+   
    /**
     * Insere l'element donne dans cette liste, a la position courante, apres
     * avoir deplace d'une position vers la droite l'element courant et tous 
@@ -267,18 +283,18 @@ public class ListePosCouranteTableau {
     * @throws ListePleineException si cette liste est pleine avant l'appel
     */
    public void inserer (Object element) throws ListePleineException {
-
+      
       //À FAIRE... N'oubliez pas d'ajuster le nombre d'elements
       if(estPleine()){
          throw new ListePleineException();
       }
 
-      decalerDroite(elements , posCourante, nbrElements - 1);
+      decalerDroite(elements,posCourante, nbrElements - 1);
 
       elements[posCourante] = element;
       nbrElements++;
    }
-
+   
    /**
     * Ajoute l'element donne a la suite du dernier element (a la fin de cette
     * liste). L'element ajoute devient l'element courant.
@@ -294,18 +310,17 @@ public class ListePosCouranteTableau {
     * @throws ListePleineException si cette liste est pleine avant l'appel
     */
    public void ajouterFin (Object element) throws ListePleineException {
-
+      
       //À FAIRE... N'oubliez pas d'ajuster le nombre d'elements
       if(estPleine()){
          throw new ListePleineException();
-      }   
-
+      }
       posCourante = nbrElements;
 
       elements[posCourante] = element;
       nbrElements++;
    }
-
+   
    /**
     * Supprime de cette liste l'element courant (celui qui se trouve a 
     * la position courante), en decalant d'une position vers la gauche
@@ -322,36 +337,32 @@ public class ListePosCouranteTableau {
     * @return l'element supprime de cette liste.
     * @throws ListeVideException si cette liste est vide avant l'appel
     */
-   public Object supprimer () throws ListeVideException {   
-      Object elem;
+   public Object supprimer () throws ListeVideException {
+      Object retour;
       //À FAIRE... N'oubliez pas d'ajuster le nombre d'elements
-      if(estVide()){
-         throw new ListeVideException();
-      }
-      elem = elements[posCourante];
+      retour = getElement();
 
       decalerGauche(elements, posCourante + 1, nbrElements - 1);
 
-      nbrElements--;
-
-      return elem; //pour compilation seulement... à modifier
+      nbrElements--; 
+      return retour ; //pour compilation seulement... à modifier
    }
-
+   
    /**
     * Retire tous les elements de cette liste.
     * 
     * CONSEQUENT : la liste ne contient aucun element, estVide() retourne true.
     */
    public void vider() {
-
+      
       //A FAIRE
-      nbrElements = 0;
-      posCourante = 0;
+      posCourante = 0; 
+      nbrElements = 0; 
    }
-
+   
    //-- FIN SERVICES D'INSERTION ET DE SUPPRESSION --
-
-
+   
+   
    //----------------------------------
    // METHODES D'INSTANCE PRIVEES
    //----------------------------------
@@ -396,6 +407,8 @@ public class ListePosCouranteTableau {
          tab[i + 1] = tab[i];
       }
    }
-
+   
+   //A COMPLETER...
+   
+   
 }
-
