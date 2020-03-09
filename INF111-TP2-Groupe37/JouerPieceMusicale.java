@@ -1,4 +1,5 @@
 import javax.swing.JFileChooser;
+
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -15,7 +16,8 @@ public class JouerPieceMusicale {
         } 
     }
 
-    private static final String MSG_MENU = "1) Selectionner une piece\n2) Jouer la piece selectionnee\n3) Quitter";
+    private static final String[] MSG_MENU = {"1) Selectionner une piece","2) Jouer la piece selectionnee",
+    "3) Quitter"};
     private static final String MSG_ERREUR_NO_SONG = "Il faut selectionner une piece ";
     private static final String MSG_ERREUR_INVALID = "Choix invalide!";
     
@@ -25,18 +27,24 @@ public class JouerPieceMusicale {
         PieceMusicale piece = null;
         String choix;
         do {
-            choix = JOptionPane.showInputDialog(null, MSG_MENU);
-            if (choix.equals("1")) {
+            
+            choix = (String) JOptionPane.showInputDialog(null,"Choissisez une option","Menu:",
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            MSG_MENU,
+            MSG_MENU[0]
+            );
+            if (choix.equals(MSG_MENU[0])) {
                 final JFileChooser chooser = new JFileChooser();
                 chooser.showSaveDialog(null);
                 piece = Fichier.obtenirChanson(chooser.getSelectedFile().getPath());
-            } else if (choix.equals("2")) {
+            } else if (choix.equals(MSG_MENU[1])) {
                 if (piece == null) {
                     JOptionPane.showMessageDialog(null, MSG_ERREUR_NO_SONG);
                 } else {
                     piece.jouer();
                 }
-            } else if (choix.equals("3")) {
+            } else if (choix.equals(MSG_MENU[2])) {
 
             } else {
                 JOptionPane.showMessageDialog(null, MSG_ERREUR_INVALID);
