@@ -13,7 +13,8 @@ public class BarreMenus {
     // ATTRIBUTS D'INSTANCE
     //------------------------------
     private JMenuBar barreMenu;
-    
+    JMenu m;
+    JMenuItem[] itemsMenu;
     /**
      * Construit la barre de menu avec 1 menu et 2 items
      * dans ce menu 
@@ -21,8 +22,7 @@ public class BarreMenus {
      * @return bar Barre de menu contenant un seul menu 
      */
     public JMenuBar creerBarreDeMenus(){
-        JMenu m;
-        JMenuItem[] itemsMenu;
+        
         
         // Creer la barre de menu
         JMenuBar bar = new JMenuBar();
@@ -48,8 +48,22 @@ public class BarreMenus {
     public BarreMenus(){
         barreMenu = creerBarreDeMenus();
     }
-
+    
+    /**
+     * Getter pour la barreMenu
+     * @return barreMenu 
+     */
     public JMenuBar getBarreMenu(){
         return barreMenu;
+    }
+
+    /**
+     * getter pour l'item du menu 
+     * Utilisé pour le ActionListener du choix de menu
+     * @param indice indice du MenuItem desiré
+     * @return MenuItem desiré
+     */
+    public JMenuItem getMenuItem(int indice){
+        return itemsMenu[indice];
     }
 }

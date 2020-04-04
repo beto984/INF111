@@ -1,13 +1,20 @@
 package appli;
-import gui.*;
-import audio.*;
+
 import javax.swing.UIManager;
+
+import audio.*;
+import gui.*;
 
 /**
  * DemarreSynthetiseur
  */
 public class DemarreSynthetiseur {
 
+    /**
+     * Fonction donnée utilisée pour regulariser 
+     * l'esthetique de l'application sur tous les systemes
+     * d'exploitation 
+     */
     public static void setLookAndFeel() {
         try { UIManager.setLookAndFeel(
             UIManager.getCrossPlatformLookAndFeelClassName());

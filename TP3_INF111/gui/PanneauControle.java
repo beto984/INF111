@@ -1,3 +1,5 @@
+
+
 package gui;
 
 import java.awt.Color;
@@ -15,6 +17,9 @@ import java.awt.GridBagConstraints;
  */
 public class PanneauControle extends JPanel{
 
+    //---------------------------
+    //ATTRIBUTS D'INSTANCE
+    //---------------------------
     JSlider volume = new JSlider();
     JButton augmente = new JButton();
     JButton diminue = new JButton(); 
@@ -23,13 +28,19 @@ public class PanneauControle extends JPanel{
     JLabel volumeLabel = new JLabel("Volume");
     JLabel octaveLabel = new JLabel("Octave");
 
-
+    //---------------------------
+    //CONSTRUCTEUR
+    //---------------------------
     public PanneauControle(int volumeIn, int octaveIn){
         initComposants(volumeIn, octaveIn);
     }
 
 
-
+    /**
+     * Initialisation des composantes et ajout au JPanel
+     * @param volumeIn Volume desiré 
+     * @param OctaveIn Octave desiré
+     */
     private void initComposants(int volumeIn, int OctaveIn) {
         this.setLayout(new GridBagLayout());
 
@@ -46,7 +57,7 @@ public class PanneauControle extends JPanel{
         this.add(volumeLabel,c);
         c.gridy++;
         this.add(volume,c);
-        c.gridx++;
+        c.gridx++; 
         this.add(diminue,c);
         c.gridx++;
         this.add(ecran,c);
@@ -58,6 +69,10 @@ public class PanneauControle extends JPanel{
 
     }
 
+    /**
+     * Initialise l'ecran affichant l'octave
+     * @param numOctave octave desiré au debut
+     */
     private void initEcran(int numOctave){
         ecran.setEditable(false);
         ecran.setColumns(2);
@@ -65,6 +80,10 @@ public class PanneauControle extends JPanel{
         ecran.setText(Integer.toString(numOctave));
     }
 
+    /**
+     * Initialise le slider pour le volume
+     * @param volumeIn volume choisi a la creation 
+     */
     private void initVolume(int volumeIn){
         volume.setMinimum(0);
         volume.setMaximum(10);
@@ -75,12 +94,17 @@ public class PanneauControle extends JPanel{
         volume.setValue(volumeIn);
     }
 
-
+    /**
+     * Initialisation des boutons pour le choix d'octave
+     */
     private void initBoutons(){
         augmente.setText(">");
         diminue.setText("<");
     }
 
+    //---------------------------
+    //GETTERS
+    //---------------------------
     public JSlider getSlider(){
         return volume; 
     }
@@ -96,7 +120,14 @@ public class PanneauControle extends JPanel{
     public JButton getDiminue(){
         return diminue;
     }
+    
+    public int getNumOctave(){
+        return numOctave;
+    }
 
+    //---------------------------
+    // METHODES POUR LISTENERS
+    //---------------------------
     public void augmenteNumOctave(){
         numOctave++;
         initEcran(numOctave);
@@ -107,7 +138,5 @@ public class PanneauControle extends JPanel{
         initEcran(numOctave);
     }
 
-    public int getNumOctave(){
-        return numOctave;
-    }
+    
 }

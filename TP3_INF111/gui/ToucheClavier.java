@@ -38,6 +38,9 @@ public class ToucheClavier extends JPanel{
         initComposants();
     }
 
+    /**
+     * Initialisation des composantes
+     */
     private void initComposants(){
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK,1,true));
         this.setBackground(couleur);
@@ -49,5 +52,19 @@ public class ToucheClavier extends JPanel{
         etiquette.setText(note + Integer.toString(octave));
         etiquette.setHorizontalAlignment(SwingConstants.CENTER);
         add(etiquette, BorderLayout.SOUTH);
+    }
+    
+    //----------------
+    //GETTERS
+    //----------------
+    public String getNomNoteOctave(){ 
+        String noteOctave = note + Integer.toString(octave);
+        return noteOctave;
+    }
+    //----------------
+    //SETTERS
+    //----------------
+    public void setOctave(int Octave){ 
+        this.octave = Octave;
     }
 }
