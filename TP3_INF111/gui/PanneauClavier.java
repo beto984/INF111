@@ -1,24 +1,32 @@
-
+/**
+ * Cette classe représente l'interface graphique du Panneau du Clavier
+ * PanneauClavier
+ * 
+ * @author Kenza Zniber & Humberto Villarino
+ * Codes permanents : ZNIK07569704 & VILH24019807
+ * Courriels : kenza.zniber.1@ens.etsmtl.ca & humberto.villarino@ens.etsmtl.ca
+ * Cours : INF111
+ * @version 2020-04-05
+ */
+ 
 package gui;
 
 import java.awt.*;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
+
+
 import audio.*;
 
-/**
- * PanneauClavier
- */
-public class PanneauClavier implements MouseListener{
-
-    //---------------------------
-    // ATTRIBUTS D'INSTANCE
-    //---------------------------
-
-    JPanel clavier = new JPanel();
-    ModuleAudio audio;
-    int octave;
+/*******************************
+ ***  Classe PanneauClavier  ***
+ *******************************/
+public class PanneauClavier implements MouseListener {
+    
+    //------------------------
+    //-------CONSTANTE--------
+    //------------------------
     ToucheClavier ToucheC;
     ToucheClavier ToucheCDiese;
     ToucheClavier ToucheD;
@@ -32,130 +40,106 @@ public class PanneauClavier implements MouseListener{
     ToucheClavier ToucheADiese;
     ToucheClavier ToucheB;
     ToucheClavier ToucheCAvecOctaveSuivant;
+    
+    public String[] NOTES = 
+    {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C"};
 
-    //----------------------------------------
-    //CONSTRUCTEUR
-    //----------------------------------------
-    public PanneauClavier(int octave, ModuleAudio audio){
+    public Color[] COULEUR_TOUCHE = 
+    {Color.WHITE, Color.BLACK, Color.WHITE, Color.BLACK, Color.WHITE, 
+            Color.WHITE, Color.BLACK, Color.WHITE, Color.BLACK, Color.WHITE,
+            Color.BLACK, Color.WHITE, Color.WHITE};
+    
+    public static  ToucheClavier[] toucheClavier = new ToucheClavier[12];
+
+    //------------------------
+    //- ATTRIBUTS D'INSTANCE -
+    //------------------------
+    private JPanel clavier = new JPanel();
+    private ModuleAudio audio;
+    private int octave;
+
+    //----------------
+    //- CONSTRUCTEUR -
+    //----------------
+    public PanneauClavier(int octave, ModuleAudio audio) {
         this.octave = octave;
         this.audio = audio; 
         initComposants();
     }
 
     /**
-     * Initialisation des composantes du panneaClavier 
+     * Initialisation des composantes du panneauClavier 
      * et ajout au JPanel 
      */
-    private void initComposants(){
-        //Esthetique du JPanel
+    private void initComposants() {
+        //Esthétique du JPanel
         clavier.setLayout(new BoxLayout(clavier, BoxLayout.X_AXIS));
-        clavier.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10, true));
-        clavier.setPreferredSize(new Dimension( 600,200));
-        
-        //Creation des touches a ajouter au JPanel
-        ToucheC = new ToucheClavier("C", octave, Color.WHITE);
-        ToucheCDiese = new ToucheClavier("C#", octave, Color.BLACK);
-        ToucheD = new ToucheClavier("D", octave, Color.WHITE);
-        ToucheDDiese = new ToucheClavier("D#", octave, Color.BLACK);
-        ToucheE = new ToucheClavier("E", octave, Color.WHITE);
-        ToucheF = new ToucheClavier("F", octave, Color.WHITE);
-        ToucheFDiese = new ToucheClavier("F#", octave, Color.BLACK);       
-        ToucheG = new ToucheClavier("G", octave, Color.WHITE);
-        ToucheGDiese = new ToucheClavier("G#", octave, Color.BLACK);
-        ToucheA = new ToucheClavier("A", octave, Color.WHITE);
-        ToucheADiese = new ToucheClavier("A#", octave, Color.BLACK);
-        ToucheB = new ToucheClavier("B", octave, Color.WHITE);
-        ToucheCAvecOctaveSuivant = new ToucheClavier("C", octave + 1, Color.WHITE);
-        
-        //Ajout des touches au JPanel 
-        clavier.add(ToucheC);
-        clavier.add(ToucheCDiese);
-        clavier.add(ToucheD);
-        clavier.add(ToucheDDiese);
-        clavier.add(ToucheE);
-        clavier.add(ToucheF);
-        clavier.add(ToucheFDiese);
-        clavier.add(ToucheG);
-        clavier.add(ToucheGDiese);
-        clavier.add(ToucheA);
-        clavier.add(ToucheADiese);
-        clavier.add(ToucheB);
-        clavier.add(ToucheCAvecOctaveSuivant); 
-        
+        clavier.setBorder(BorderFactory.createLineBorder(Color.BLACK,
+				10, true));
+        clavier.setPreferredSize(new Dimension(600, 200));
+
+        for (int i = 0 ; i < 12 ; i++ ) {
+            if (i == 11) {
+                toucheClavier[i] = new ToucheClavier(NOTES[i], octave + 1, COULEUR_TOUCHE[i] );
+            } else {
+                toucheClavier[i] = new ToucheClavier(NOTES[i], octave, COULEUR_TOUCHE[i] );
+            }
+            clavier.add(toucheClavier[i]);//Ajout des touches au JPanel 
+        }
+            
         ajouteMouseListener();
-       
     }
 
+	//----------------------
+    //- GETTER POUR JPANEL -
+    //----------------------
     /**
      * Getter pour JPanel
      * @return JPanel contenant toutes les touches
      */
-    public JPanel getClavier(){
+    public JPanel getClavier() {
         return clavier;
-
     }
 
     /**
-     * Enleve le MouseListener pour toutes les touches du clavier
+     * Enlève le MouseListener pour toutes les touches du clavier
      */
-    public void enleveMouseListener(){
-        ToucheC.removeMouseListener(this);
-        ToucheCDiese.removeMouseListener(this);
-        ToucheD.removeMouseListener(this);
-        ToucheDDiese.removeMouseListener(this);
-        ToucheE.removeMouseListener(this);
-        ToucheF.removeMouseListener(this);
-        ToucheFDiese.removeMouseListener(this);
-        ToucheG.removeMouseListener(this);
-        ToucheGDiese.removeMouseListener(this);
-        ToucheA.removeMouseListener(this);
-        ToucheADiese.removeMouseListener(this);
-        ToucheB.removeMouseListener(this);
-        ToucheCAvecOctaveSuivant.removeMouseListener(this);
-        
+    public void enleveMouseListener() {
+        for (int i = 0 ; i < 12 ; i++ ) {
+            toucheClavier[i].removeMouseListener(this); 
+        }
     }
 
     /**
      * Ajoute le MouseListener pour toutes les touches du clavier
      */
-    public void ajouteMouseListener(){
-        ToucheC.addMouseListener(this);
-        ToucheCDiese.addMouseListener(this);
-        ToucheD.addMouseListener(this);
-        ToucheDDiese.addMouseListener(this);
-        ToucheE.addMouseListener(this);
-        ToucheF.addMouseListener(this);
-        ToucheFDiese.addMouseListener(this);
-        ToucheG.addMouseListener(this);
-        ToucheGDiese.addMouseListener(this);
-        ToucheA.addMouseListener(this);
-        ToucheADiese.addMouseListener(this);
-        ToucheB.addMouseListener(this);
-        ToucheCAvecOctaveSuivant.addMouseListener(this);
+    public void ajouteMouseListener() {
+        for (int i = 0 ; i < 12 ; i++ ) {
+            toucheClavier[i].addMouseListener(this); 
+        }
     }
     
-    //------------------------------------------------
-    // IMPLEMENTATION DE L'INTERFACE MOULISTENER
-    //------------------------------------------------
+    //-----------------------------------------------
+    //- IMPLEMENTATION DE L'INTERFACE MOUSELISTENER -
+    //-----------------------------------------------
     public void mouseClicked (MouseEvent e) {
         //ne fait rien
     }
-    public void mouseEntered (MouseEvent e){
+	
+    public void mouseEntered (MouseEvent e) {
         //ne fait rien
     }
     
-    public void mouseExited (MouseEvent e){
+    public void mouseExited (MouseEvent e) {
         //ne fait rien
     }
     
-    public void mousePressed (MouseEvent e){
-        ToucheClavier  Touche = (ToucheClavier)e.getSource();
-        
-        audio.jouerUneNote(Touche.getNomNoteOctave());//accept une string en parametre
-    
+    public void mousePressed (MouseEvent e) {
+        ToucheClavier touche = (ToucheClavier) e.getSource();
+        audio.jouerUneNote(touche.getNomNoteOctave());
     }
-    public void mouseReleased (MouseEvent e){
+	
+    public void mouseReleased (MouseEvent e) {
         audio.jouerUnSilence();
     }
 }
-
